@@ -1,0 +1,151 @@
+<div class="page-wrapper" style="min-height: 800px">
+  <div class="card-body">
+    <div class="card-header pt-0">
+      <h4 class="card-title">Categories</h4>
+      <label
+        >Search:<input
+          type="search"
+          class="form-control form-control-sm"
+          placeholder=""
+          aria-controls="DataTables_Table_0"
+          [(ngModel)]="search"
+      /></label>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-nowrap mb-0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Category Name</th>
+            <th>Description</th>
+            <a (click)="open1(content)" class="btn btn-success">
+              <i class="fas fa-plus"></i
+            ></a>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let i of listCategories | search: search; let index = index"
+          >
+            <td>{{ index + 1 }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.description }}</td>
+            <a class="btn btn-danger btn-circle">
+              <i class="fas fa-trash" (click)="deleteCategory(i._id)"></i>
+            </a>
+            &nbsp;
+            <a class="btn btn-warning btn-circle">
+              <i
+                class="fas fa-exclamation-triangle"
+                (click)="open2(content2, i)"
+              ></i>
+            </a>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- modal -->
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Create Category</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="categoryForm">
+      <div class="mb-3">
+        <label>Name</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            formControlName="name"
+            placeholder="Name"
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label>Description</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            formControlName="description"
+            placeholder="description"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click'); createCategory()"
+    >
+      Save
+    </button>
+  </div>
+</ng-template>
+
+<hr />
+<pre>{{ closeResult }}</pre>
+
+<!-- update -->
+
+<ng-template #content2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update Category</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="categoryForm">
+      <div class="mb-3">
+        <label>Name</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            formControlName="name"
+            placeholder="Name"
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label>Description</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            formControlName="description"
+            placeholder="description"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click'); updatecategory()"
+    >
+      update
+    </button>
+  </div>
+</ng-template>
+
+<hr />
+
+<pre>{{ closeResult }}</pre>

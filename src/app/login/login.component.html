@@ -1,0 +1,58 @@
+<div class="container">
+  <img
+    class="img-fluid logo-dark mb-2"
+    src="assets/img/logo-01.png"
+    alt="Logo"
+    style="margin-top: 50px"
+  />
+  <div class="loginbox">
+    <div class="login-right">
+      <div class="login-right-wrap">
+        <h1>Welcome Back</h1>
+        <p class="account-subtitle">
+          Don't miss your next opportunity. Sign in to stay updated on your
+          professional world.
+        </p>
+        <form class="user" (ngSubmit)="onSubmit()" [formGroup]="form">
+          <div class="form-group form-focus">
+            <input
+              type="email"
+              class="form-control floating"
+              formControlName="email"
+            />
+            <label class="focus-label">Email</label>
+          </div>
+          <div class="form-group form-focus">
+            <input
+              type="password"
+              class="form-control floating"
+              formControlName="password"
+            />
+            <label class="focus-label">Password</label>
+          </div>
+          <div class="form-group">
+            <label class="custom_check">
+              <input type="checkbox" name="rem_password" />
+              <span class="checkmark"></span> Remember password
+            </label>
+          </div>
+          <button
+            class="btn btn-primary btn-block btn-lg login-btn"
+            type="submit"
+          >
+            Login
+          </button>
+          <div class="col-lg-6 dont-have">
+            New to Kofejob? <a routerLink="/registre">Click here</a>
+          </div>
+
+          <div class="col-lg-12 login-forgot">
+            <a class="forgot-link" routerLink="/forget">Forgot Password ?</a>
+          </div>
+
+          <div class="row form-row login-foot"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

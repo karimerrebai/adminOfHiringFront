@@ -1,0 +1,829 @@
+<div class="page-wrapper" style="min-height: 800px">
+  <div class="card-body pt-0">
+    <div class="card-header">
+      <h5 class="card-title">Companies</h5>
+    </div>
+    <div class="reviews-menu-links">
+      <ul role="tablist" class="nav nav-pills card-header-pills nav-justified">
+        <li class="nav-item">
+          <a href="#tab-4" data-bs-toggle="tab" class="nav-link active"
+            >All ( {{ companies.length }} )</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="#tab-5" data-bs-toggle="tab" class="nav-link"
+            >Aprroved ( {{ approved.length }})</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="#tab-6" data-bs-toggle="tab" class="nav-link">
+            Refused ()
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content pt-0">
+      <div role="tabpanel" id="tab-4" class="tab-pane fade active show">
+        <div class="table-responsive">
+          <div
+            id="DataTables_Table_0_wrapper"
+            class="dataTables_wrapper dt-bootstrap4 no-footer"
+          >
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <div class="dataTables_length" id="DataTables_Table_0_length">
+                  <label
+                    >Show
+                    <select
+                      name="DataTables_Table_0_length"
+                      aria-controls="DataTables_Table_0"
+                      class="custom-select custom-select-sm form-control form-control-sm"
+                    >
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                    entries</label
+                  >
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                  <label
+                    >Search:<input
+                      type="search"
+                      class="form-control form-control-sm"
+                      placeholder=""
+                      aria-controls="DataTables_Table_0"
+                  /></label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <table
+                  class="table table-hover table-center mb-0 datatable dataTable no-footer"
+                  id="DataTables_Table_0"
+                  role="grid"
+                  aria-describedby="DataTables_Table_0_info"
+                >
+                  <thead>
+                    <tr role="row">
+                      <th
+                        class="sorting_asc"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        aria-sort="ascending"
+                        aria-label=": activate to sort column descending"
+                        style="width: 2px"
+                      ></th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Profile: activate to sort column ascending"
+                        style="width: 148.75px"
+                      >
+                        Name
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Designation: activate to sort column ascending"
+                        style="width: 115.859px"
+                      >
+                        Adress
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="comments: activate to sort column ascending"
+                        style="width: 278px"
+                      >
+                        email
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Stars: activate to sort column ascending"
+                        style="width: 40.0312px"
+                      >
+                        Matricule
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Stars: activate to sort column ascending"
+                        style="width: 40.0312px"
+                      >
+                        Approve company
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr role="row" class="odd" *ngFor="let i of companies">
+                      <td class="sorting_1">
+                        <div class="form-check custom-checkbox">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            id="customCheck1"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="customCheck1"
+                          ></label>
+                        </div>
+                      </td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="profile.html"
+                            ><img
+                              class="avatar-img rounded-circle me-2"
+                              src="http://localhost:8080/getfile/{{
+                                i.picture
+                              }}"
+                              alt="User Image"
+                            />
+                            {{ i.fullname }}
+                          </a>
+                        </h2>
+                      </td>
+                      <td>{{ i.adress }}</td>
+                      <td>
+                        <div class="desc-info">
+                          {{ i.email }}
+                        </div>
+                      </td>
+
+                      <td>{{ i.matricule }}</td>
+
+                      <td class="text-end text-nowrap">
+                        <a
+                          (click)="confirmCompany(i)"
+                          class="btn btn-approve text-white me-2"
+                          >Approve</a
+                        >
+                        <a
+                          class="btn btn-disable"
+                          (click)="deletecompany(i._id)"
+                          >Enable
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-5">
+                <div
+                  class="dataTables_info"
+                  id="DataTables_Table_0_info"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Showing 1 to 10 of 10 entries
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-7">
+                <div
+                  class="dataTables_paginate paging_simple_numbers"
+                  id="DataTables_Table_0_paginate"
+                >
+                  <ul class="pagination">
+                    <li
+                      class="paginate_button page-item previous disabled"
+                      id="DataTables_Table_0_previous"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_0"
+                        data-dt-idx="0"
+                        tabindex="0"
+                        class="page-link"
+                        >Previous</a
+                      >
+                    </li>
+                    <li class="paginate_button page-item active">
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_0"
+                        data-dt-idx="1"
+                        tabindex="0"
+                        class="page-link"
+                        >1</a
+                      >
+                    </li>
+                    <li
+                      class="paginate_button page-item next disabled"
+                      id="DataTables_Table_0_next"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_0"
+                        data-dt-idx="2"
+                        tabindex="0"
+                        class="page-link"
+                        >Next</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" id="tab-5" class="tab-pane fade">
+        <div class="table-responsive">
+          <div
+            id="DataTables_Table_1_wrapper"
+            class="dataTables_wrapper dt-bootstrap4 no-footer"
+          >
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <div class="dataTables_length" id="DataTables_Table_1_length">
+                  <label
+                    >Show
+                    <select
+                      name="DataTables_Table_1_length"
+                      aria-controls="DataTables_Table_1"
+                      class="custom-select custom-select-sm form-control form-control-sm"
+                    >
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                    entries</label
+                  >
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <div id="DataTables_Table_1_filter" class="dataTables_filter">
+                  <label
+                    >Search:<input
+                      type="search"
+                      class="form-control form-control-sm"
+                      placeholder=""
+                      aria-controls="DataTables_Table_1"
+                  /></label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <table
+                  class="table table-center table-bordered table-hover datatable dataTable no-footer"
+                  id="DataTables_Table_1"
+                  role="grid"
+                  aria-describedby="DataTables_Table_1_info"
+                >
+                  <thead>
+                    <tr role="row">
+                      <th
+                        class="sorting_asc"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        aria-sort="ascending"
+                        aria-label=": activate to sort column descending"
+                        style="width: 2px"
+                      ></th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Profile: activate to sort column ascending"
+                        style="width: 148.75px"
+                      >
+                        Name
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Designation: activate to sort column ascending"
+                        style="width: 115.859px"
+                      >
+                        Adress
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="comments: activate to sort column ascending"
+                        style="width: 278px"
+                      >
+                        email
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_0"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Stars: activate to sort column ascending"
+                        style="width: 40.0312px"
+                      >
+                        Matricule
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--the ng if should be written here-->
+                    <tr role="row" class="odd" *ngFor="let s of approved">
+                      <td class="sorting_1">
+                        <div class="form-check custom-checkbox">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            id="customCheck11"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="customCheck11"
+                          ></label>
+                        </div>
+                      </td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="profile.html"
+                            ><img
+                              class="avatar-img rounded-circle me-2"
+                              src="http://localhost:8080/getfile/{{
+                                s.picture
+                              }}"
+                              alt="User Image"
+                            />
+                            {{ s.fullname }}
+                          </a>
+                        </h2>
+                      </td>
+                      <td>{{ s.adress }}</td>
+                      <td>
+                        {{ s.email }}
+                      </td>
+
+                      <td>{{ s.matricule }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-5">
+                <div
+                  class="dataTables_info"
+                  id="DataTables_Table_1_info"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Showing 1 to 8 of 8 entries
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-7">
+                <div
+                  class="dataTables_paginate paging_simple_numbers"
+                  id="DataTables_Table_1_paginate"
+                >
+                  <ul class="pagination">
+                    <li
+                      class="paginate_button page-item previous disabled"
+                      id="DataTables_Table_1_previous"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_1"
+                        data-dt-idx="0"
+                        tabindex="0"
+                        class="page-link"
+                        >Previous</a
+                      >
+                    </li>
+                    <li class="paginate_button page-item active">
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_1"
+                        data-dt-idx="1"
+                        tabindex="0"
+                        class="page-link"
+                        >1</a
+                      >
+                    </li>
+                    <li
+                      class="paginate_button page-item next disabled"
+                      id="DataTables_Table_1_next"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_1"
+                        data-dt-idx="2"
+                        tabindex="0"
+                        class="page-link"
+                        >Next</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" id="tab-6" class="tab-pane fade">
+        <div class="table-responsive">
+          <div
+            id="DataTables_Table_2_wrapper"
+            class="dataTables_wrapper dt-bootstrap4 no-footer"
+          >
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <div class="dataTables_length" id="DataTables_Table_2_length">
+                  <label
+                    >Show
+                    <select
+                      name="DataTables_Table_2_length"
+                      aria-controls="DataTables_Table_2"
+                      class="custom-select custom-select-sm form-control form-control-sm"
+                    >
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                    entries</label
+                  >
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <div id="DataTables_Table_2_filter" class="dataTables_filter">
+                  <label
+                    >Search:<input
+                      type="search"
+                      class="form-control form-control-sm"
+                      placeholder=""
+                      aria-controls="DataTables_Table_2"
+                  /></label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <table
+                  class="table table-bordered table-hover datatable dataTable no-footer"
+                  id="DataTables_Table_2"
+                  role="grid"
+                  aria-describedby="DataTables_Table_2_info"
+                >
+                  <thead>
+                    <tr role="row">
+                      <th
+                        class="sorting_asc"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_2"
+                        rowspan="1"
+                        colspan="1"
+                        aria-sort="ascending"
+                        aria-label=": activate to sort column descending"
+                        style="width: 0px"
+                      ></th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_2"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Profile: activate to sort column ascending"
+                        style="width: 0px"
+                      >
+                        Name
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_2"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Designation: activate to sort column ascending"
+                        style="width: 0px"
+                      >
+                        Adress
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_2"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="comments: activate to sort column ascending"
+                        style="width: 0px"
+                      >
+                        Email
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_2"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Stars: activate to sort column ascending"
+                        style="width: 0px"
+                      >
+                        Matricule
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr role="row" class="even">
+                      <td class="sorting_1">
+                        <div class="form-check custom-checkbox">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            id="customCheck22"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="customCheck22"
+                          ></label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-5">
+                <div
+                  class="dataTables_info"
+                  id="DataTables_Table_2_info"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Showing 1 to 10 of 10 entries
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-7">
+                <div
+                  class="dataTables_paginate paging_simple_numbers"
+                  id="DataTables_Table_2_paginate"
+                >
+                  <ul class="pagination">
+                    <li
+                      class="paginate_button page-item previous disabled"
+                      id="DataTables_Table_2_previous"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_2"
+                        data-dt-idx="0"
+                        tabindex="0"
+                        class="page-link"
+                        >Previous</a
+                      >
+                    </li>
+                    <li class="paginate_button page-item active">
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_2"
+                        data-dt-idx="1"
+                        tabindex="0"
+                        class="page-link"
+                        >1</a
+                      >
+                    </li>
+                    <li
+                      class="paginate_button page-item next disabled"
+                      id="DataTables_Table_2_next"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_2"
+                        data-dt-idx="2"
+                        tabindex="0"
+                        class="page-link"
+                        >Next</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" id="tab-7" class="tab-pane fade">
+        <div class="table-responsive">
+          <div
+            id="DataTables_Table_3_wrapper"
+            class="dataTables_wrapper dt-bootstrap4 no-footer"
+          >
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <div class="dataTables_length" id="DataTables_Table_3_length">
+                  <label
+                    >Show
+                    <select
+                      name="DataTables_Table_3_length"
+                      aria-controls="DataTables_Table_3"
+                      class="custom-select custom-select-sm form-control form-control-sm"
+                    >
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                    entries</label
+                  >
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <div id="DataTables_Table_3_filter" class="dataTables_filter">
+                  <label
+                    >Search:<input
+                      type="search"
+                      class="form-control form-control-sm"
+                      placeholder=""
+                      aria-controls="DataTables_Table_3"
+                  /></label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <table
+                  class="table table-bordered table-hover datatable dataTable no-footer"
+                  id="DataTables_Table_3"
+                  role="grid"
+                  aria-describedby="DataTables_Table_3_info"
+                >
+                  <thead>
+                    <tr role="row">
+                      <th
+                        class="sorting_asc"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_3"
+                        rowspan="1"
+                        colspan="1"
+                        aria-sort="ascending"
+                        aria-label=": activate to sort column descending"
+                        style="width: 0px"
+                      ></th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_3"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Profile: activate to sort column ascending"
+                        style="width: 0px"
+                      >
+                        Profile
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_3"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Designation: activate to sort column ascending"
+                        style="width: 0px"
+                      >
+                        Designation
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_3"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="comments: activate to sort column ascending"
+                        style="width: 0px"
+                      >
+                        comments
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_3"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Stars: activate to sort column ascending"
+                        style="width: 0px"
+                      >
+                        Stars
+                      </th>
+                      <th
+                        class="sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_3"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Category: activate to sort column ascending"
+                        style="width: 0px"
+                      >
+                        Category
+                      </th>
+                      <th
+                        class="text-end sorting"
+                        tabindex="0"
+                        aria-controls="DataTables_Table_3"
+                        rowspan="1"
+                        colspan="1"
+                        aria-label="Actions: activate to sort column ascending"
+                        style="width: 0px"
+                      >
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="odd">
+                      <td valign="top" colspan="7" class="dataTables_empty">
+                        No data available in table
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-5">
+                <div
+                  class="dataTables_info"
+                  id="DataTables_Table_3_info"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Showing 0 to 0 of 0 entries
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-7">
+                <div
+                  class="dataTables_paginate paging_simple_numbers"
+                  id="DataTables_Table_3_paginate"
+                >
+                  <ul class="pagination">
+                    <li
+                      class="paginate_button page-item previous disabled"
+                      id="DataTables_Table_3_previous"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_3"
+                        data-dt-idx="0"
+                        tabindex="0"
+                        class="page-link"
+                        >Previous</a
+                      >
+                    </li>
+                    <li
+                      class="paginate_button page-item next disabled"
+                      id="DataTables_Table_3_next"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_3"
+                        data-dt-idx="1"
+                        tabindex="0"
+                        class="page-link"
+                        >Next</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
